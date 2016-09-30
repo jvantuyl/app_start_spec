@@ -3,7 +3,6 @@ defmodule AppStartSpec do
 
   @type args     :: any()
   @type on_start :: {:ok, pid()} |
-                    {:ok, pid(), Application.state()} |
                     {:error, reason :: term}
   @type type     :: Application.start_type()
 
@@ -14,6 +13,13 @@ defmodule AppStartSpec do
     children = []
 
     opts = [strategy: :one_for_one, name: AppStartSpec.Supervisor]
-    Supervisor.start_link(children, opts)
+    case Supervisor.start_link(children, opts) do
+      {:ok, p} ->
+        {:ok, p}
+      :ignore ->
+        {:error, :supervisor_ignored_start_request}
+      {:error, e} ->
+        {:error, e}
+    end
   end
 end
