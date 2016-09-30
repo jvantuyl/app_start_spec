@@ -20,3 +20,13 @@ $ mix dialyzer
   done in 0m1.82s
   done (warnings were emitted)
 ```
+
+## dialyzer generates no warning
+
+```
+$ git checkout no_start_warning
+$ mix dialyzer
+
+  Proceeding with analysis... done in 0m1.73s
+  done (passed successfully)
+```

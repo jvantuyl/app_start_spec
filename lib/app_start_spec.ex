@@ -2,7 +2,9 @@ defmodule AppStartSpec do
   use Application
 
   @type args     :: any()
-  @type on_start :: Supervisor.on_start()
+  @type on_start :: {:ok, pid()} |
+                    {:ok, pid(), Application.state()} |
+                    {:error, reason :: term}
   @type type     :: Application.start_type()
 
   @spec start(type(), args()) :: on_start()
