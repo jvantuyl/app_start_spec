@@ -1,19 +1,16 @@
 defmodule AppStartSpec do
   use Application
 
-  # See http://elixir-lang.org/docs/stable/elixir/Application.html
-  # for more information on OTP Applications
+  @type args     :: any()
+  @type on_start :: Supervisor.on_start()
+  @type type     :: Application.start_type()
+
+  @spec start(type(), args()) :: on_start()
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
-    # Define workers and child supervisors to be supervised
-    children = [
-      # Starts a worker by calling: AppStartSpec.Worker.start_link(arg1, arg2, arg3)
-      # worker(AppStartSpec.Worker, [arg1, arg2, arg3]),
-    ]
+    children = []
 
-    # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: AppStartSpec.Supervisor]
     Supervisor.start_link(children, opts)
   end

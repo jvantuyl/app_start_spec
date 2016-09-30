@@ -1,24 +1,22 @@
 # AppStartSpec
 
-**TODO: Add description**
+## setup
 
-## Installation
+```
+$ git clone git@github.com:amorphid/app_start_spec.git
+$ cd app_start_spec
+$ mix deps.get
+$ mix dialyzer.plt
+```
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+## dialyzer generates warning
 
-  1. Add `app_start_spec` to your list of dependencies in `mix.exs`:
+```
+$ git checkout start_warning
+$ mix dialyzer
 
-    ```elixir
-    def deps do
-      [{:app_start_spec, "~> 0.1.0"}]
-    end
-    ```
-
-  2. Ensure `app_start_spec` is started before your application:
-
-    ```elixir
-    def application do
-      [applications: [:app_start_spec]]
-    end
-    ```
-
+  Proceeding with analysis...
+  app_start_spec.ex:8: The return type 'ignore' in the specification of start/2 is not a subtype of {'error',_} | {'ok',pid()} | {'ok',pid(),_}, which is the expected return type for the callback of 'Elixir.Application' behaviour
+  done in 0m1.82s
+  done (warnings were emitted)
+```
